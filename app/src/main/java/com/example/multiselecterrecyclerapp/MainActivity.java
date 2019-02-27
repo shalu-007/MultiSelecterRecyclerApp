@@ -3,6 +3,7 @@ package com.example.multiselecterrecyclerapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -25,6 +26,6 @@ public class MainActivity extends AppCompatActivity {
         TextAdapter vTextAdapter=new TextAdapter(vSingleItems);
         vRecyclerView.setAdapter(vTextAdapter);
         vRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        vRecyclerView.setLayoutManager( new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
+        vRecyclerView.setLayoutManager( new GridLayoutManager(this,3));
     }
 }

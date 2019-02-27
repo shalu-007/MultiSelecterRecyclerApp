@@ -2,12 +2,14 @@ package com.example.multiselecterrecyclerapp;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -54,13 +56,28 @@ public class TextAdapter  extends RecyclerView.Adapter<TextAdapter.TextHolder> {
         return mItems.size();
     }
 
-    class TextHolder extends RecyclerView.ViewHolder{
+    class TextHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
 
+        CardView mCardView;
         TextView title,desc;
         TextHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.title);
             desc=itemView.findViewById(R.id.description);
+            mCardView=itemView.findViewById(R.id.container);
+            mCardView.setOnClickListener(this);
+            mCardView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(mContext, "Item Clicked"+getLayoutPosition(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            Toast.makeText(mContext, "On Long Clicked"+getLayoutPosition(), Toast.LENGTH_SHORT).show();
+            return true;
         }
     }
 
