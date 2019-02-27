@@ -3,7 +3,7 @@ package com.example.multiselecterrecyclerapp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +41,12 @@ public class TextAdapter  extends RecyclerView.Adapter<TextAdapter.TextHolder> {
     public void onBindViewHolder(@NonNull TextHolder pTextHolder, int pI) {
         pTextHolder.title.setText(mItems.get(pI).getTitle());
         pTextHolder.desc.setText(mItems.get(pI).getDescription()+" ,"+(mItems.get(pI).isActive()?"ACTIVE":"INActive") );
+        final  ViewGroup.LayoutParams vLayoutParams=pTextHolder.itemView.getLayoutParams();
+        if(vLayoutParams instanceof StaggeredGridLayoutManager.LayoutParams){
+            StaggeredGridLayoutManager.LayoutParams vLayoutParams1=(StaggeredGridLayoutManager.LayoutParams) vLayoutParams;
+            vLayoutParams1.setFullSpan(true);
+            pTextHolder.itemView.setLayoutParams(vLayoutParams1);
+        }
     }
 
     @Override

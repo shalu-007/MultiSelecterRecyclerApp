@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
         TextAdapter vTextAdapter=new TextAdapter(vSingleItems);
         vRecyclerView.setAdapter(vTextAdapter);
         vRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        vRecyclerView.setLayoutManager( new LinearLayoutManager(this));
+        vRecyclerView.setLayoutManager( new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
     }
 }
