@@ -34,7 +34,7 @@ public abstract  class MultiSelectableAdapter<VH extends RecyclerView.ViewHolder
    public void DeleteSecleted(){
        List<Integer> items=getSelectedItems();
        for (Integer i:items){
-           g
+
            notifyItemChanged(i);
        }
    }
