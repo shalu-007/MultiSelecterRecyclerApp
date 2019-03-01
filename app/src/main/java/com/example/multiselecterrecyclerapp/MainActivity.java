@@ -18,13 +18,14 @@ public class MainActivity extends AppCompatActivity implements TextAdapter.TextH
     private ActionModeCallBack mCallback = new ActionModeCallBack();
     private ActionMode mActionMode;
     private TextAdapter mTextAdapter;
+    private  ArrayList<SingleItem> vSingleItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView vRecyclerView = findViewById(R.id.mRecycler);
-        ArrayList<SingleItem> vSingleItems = new ArrayList<>();
+         vSingleItems = new ArrayList<>();
         Random vRandom = new Random();
         for (int i = 0; i < 50; i++) {
             vSingleItems.add(new SingleItem("Item number " + (i + 1), "This is item number" + (i + 1), vRandom.nextBoolean()));
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements TextAdapter.TextH
     public void onItemClick(int position) {
         if (mActionMode != null) {
             toggleSelectionMethod(position);
+        }
+        else{
+            mTextAdapter.removeItem(position);
         }
     }
 
@@ -79,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements TextAdapter.TextH
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.delete:
-                    mTextAdapter.DeleteSecleted();
+                    mTextAdapter.removeItems(mTextAdapter.getSelectedItems());
                     Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                     mode.finish();
                     return true;
