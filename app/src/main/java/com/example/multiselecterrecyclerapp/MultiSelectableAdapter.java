@@ -10,22 +10,33 @@ import java.util.List;
 public abstract  class MultiSelectableAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
    private SparseBooleanArray mSelectedItems;
-   public MultiSelectableAdapter(){
+
+   MultiSelectableAdapter(){
        mSelectedItems=new SparseBooleanArray();
    }
-   public  boolean isSelected(int position){
+
+   boolean isSelected(int position){
        return  getSelectedItems().contains(position);
    }
+
     public int getSelectedItemCount() {
         return mSelectedItems.size();
     }
 
-    public List<Integer> getSelectedItems(){
+    private List<Integer> getSelectedItems(){
        List<Integer> items=new ArrayList<Integer>(mSelectedItems.size());
       for(int i=0;i<mSelectedItems.size();i++){
           items.add(mSelectedItems.keyAt(i));
       }
       return items;
+   }
+
+   public void DeleteSecleted(){
+       List<Integer> items=getSelectedItems();
+       for (Integer i:items){
+           g
+           notifyItemChanged(i);
+       }
    }
    public void  clearSelection(){
        List<Integer> items=getSelectedItems();
@@ -34,6 +45,7 @@ public abstract  class MultiSelectableAdapter<VH extends RecyclerView.ViewHolder
            notifyItemChanged(i);
        }
    }
+
    public  void toggleSelection(int position){
        if(mSelectedItems.get(position,false)){
            mSelectedItems.delete(position);
